@@ -1,0 +1,40 @@
+services:
+  node:
+    build: ./src/node
+    ports:
+      - 3001:3001
+    restart: always
+    environment:
+      - NODE_ENV=development
+    command: node
+
+  php:
+    build: ./src/php
+    ports:
+      - 8080:80
+    restart: always
+    environment:
+      - COMPOSER_HOME=app/composer
+      - COMPOSER_CACHE_DIR=app/composer/cache
+    command: php -S 0.0.0.0:8080
+
+  lua:
+    image: alpine
+    ports:
+      - 3002:3002
+    restart: always
+    environment:
+      - LUA_PATH=/app/?.lua
+    command: sh -c "apk add lua && lua -e 'print(\"Hello ASL! \" .. os.date(\"%Y-%m-%d %H:%M:%S\"))'"
+
+  java:
+    build: ./src/java
+    ports:
+      - 8081:8081
+    restart: always
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+    command: java -cp /app com.example.Main
+
+volumes:
+  db-data:
