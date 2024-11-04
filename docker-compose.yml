@@ -25,16 +25,16 @@ services:
     restart: always
     environment:
       - LUA_PATH=/app/?.lua
-    command: sh -c "apk add lua && lua -e 'print(\"Hello ASL! \" .. os.date(\"%Y-%m-%d %H:%M:%S\"))'"
+    command: sh -c "apk add lua5.4 && lua -e 'print(\"Hello ASL! \" .. os.date(\"%Y-%m-%d %H:%M:%S\"))'"
 
   java:
-    build: ./src/java
+    build: ./java
     ports:
       - 8081:8081
     restart: always
     environment:
-      - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-    command: java -cp /app com.example.Main
+      - CLASSPATH=/app
+    command: java -cp /app Main
 
 volumes:
   db-data:
