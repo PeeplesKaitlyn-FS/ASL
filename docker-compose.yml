@@ -1,30 +1,40 @@
-version: '3'
-
 services:
   node:
     build: ./src/node
     ports:
       - 3001:3001
     restart: always
-    command: node app.js
+    command: node src/node/index.js
+
 
   php:
     build: ./src/php
     ports:
       - 8080:80
     restart: always
-    command: php -S 0.0.0.0:80
+    command: php src/php/index.php
+
 
   lua:
-    build: ./src/lua
+    image: alpine
     ports:
       - 3002:3002
     restart: always
-    command: lua main.lua
+    command: lua src/lua/main.lua
+
+  java:
+    build:
+      context: ./src/java
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    restart: always
+    command: java src/java/Main.java
 
   python:
     build: ./src/python
+    image: python:latest
     ports:
       - 8082:8082
     restart: always
-    command: python app.py
+    command: python src/python/main.py
