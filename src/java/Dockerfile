@@ -1,6 +1,6 @@
 FROM openjdk:latest
 
-WORKDIR /src
+WORKDIR /src/java
 
 COPY Main.java .
 
