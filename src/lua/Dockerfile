@@ -1,6 +1,6 @@
-FROM alpine:latest
+FROM lua:latest
 
-WORKDIR /src/lua
+WORKDIR /src
 
 COPY main.lua .
 
