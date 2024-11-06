@@ -1,5 +1,7 @@
 FROM python:latest
 
-WORKDIR /app
+WORKDIR /src/python
 
-CMD ["python", "-c", "import datetime; print('Hello ASL! ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))"]
+COPY app.py .
+
+CMD ["python", "app.py"]
