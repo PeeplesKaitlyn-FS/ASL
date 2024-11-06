@@ -1,11 +1,11 @@
+version: '3'
+
 services:
   node:
     build: ./src/node
     ports:
       - 3001:3001
     restart: always
-    environment:
-      - NODE_ENV=development
     command: node app.js
 
   php:
@@ -13,30 +13,18 @@ services:
     ports:
       - 8080:80
     restart: always
-    environment:
-      - COMPOSER_HOME=app/composer
-      - COMPOSER_CACHE_DIR=app/composer/cache
-    command: php -S 0.0.0.0:8080 -t /app
+    command: php -S 0.0.0.0:80
 
   lua:
     build: ./src/lua
-    image: alpine
     ports:
       - 3002:3002
     restart: always
-    environment:
-      - LUA_PATH=/app/?.lua
     command: lua main.lua
 
   python:
     build: ./src/python
-    image: python:latest
     ports:
       - 8082:8082
     restart: always
-    environment:
-      - PYTHONPATH=/app
     command: python app.py
-
-volumes:
-  db-data:
