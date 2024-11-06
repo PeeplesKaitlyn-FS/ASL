@@ -1,2 +1,3 @@
 <?php
-echo 'Hello ASL! ' . date('Y-m-d H:i:s');
+$date = date('Y-m-d H:i:s');
+echo "Hello ASL! $date\n";
