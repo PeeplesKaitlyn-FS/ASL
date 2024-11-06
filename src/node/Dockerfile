@@ -1,6 +1,6 @@
 FROM node:latest
 
-WORKDIR /src
+WORKDIR /src/node
 
 COPY app.js .
 
