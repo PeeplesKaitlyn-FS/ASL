@@ -1,6 +1,8 @@
-FROM lua:latest
+FROM alpine:latest
 
-WORKDIR /src
+RUN apk add --no-cache lua
+
+WORKDIR /src/lua
 
 COPY main.lua .
 
