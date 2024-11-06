@@ -1,7 +1,7 @@
 FROM node:latest
 
-WORKDIR /app
+WORKDIR /src/node
 
-COPY . .
+COPY app.js .
 
-CMD ["node", "-e", "console.log('Hello ASL! ' + new Date())"]
+CMD ["node", "app.js"]
