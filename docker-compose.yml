@@ -1,26 +1,26 @@
 services:
   node:
+    image: node:latest
     build: ./src/node
     ports:
       - 3001:3001
     restart: always
-    command: node src/node/index.js
+    command: node app.js
 
 
   php:
+    image: php:latest
     build: ./src/php
     ports:
       - 8080:80
     restart: always
-    command: php src/php/index.php
-
+    command: php index.php
 
   lua:
-    image: alpine
+    build: .
     ports:
       - 3002:3002
     restart: always
-    command: lua src/lua/main.lua
 
   java:
     build:
@@ -29,7 +29,7 @@ services:
     ports:
       - 8081:8081
     restart: always
-    command: java src/java/Main.java
+    command: java main.java
 
   python:
     build: ./src/python
@@ -37,4 +37,4 @@ services:
     ports:
       - 8082:8082
     restart: always
-    command: python src/python/main.py
+    command: python app.py
