@@ -1,6 +1,6 @@
 FROM php:latest
 
-WORKDIR /app
+WORKDIR /src/php
 
 COPY index.php .
 
