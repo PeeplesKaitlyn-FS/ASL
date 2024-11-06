@@ -1,6 +1,6 @@
 FROM python:latest
 
-WORKDIR /src
+WORKDIR /src/python
 
 COPY app.py .
 
