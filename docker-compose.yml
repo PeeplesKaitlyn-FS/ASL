@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       - NODE_ENV=development
-    command: node
+    command: node app.js
 
   php:
     build: ./src/php
@@ -16,25 +16,27 @@ services:
     environment:
       - COMPOSER_HOME=app/composer
       - COMPOSER_CACHE_DIR=app/composer/cache
-    command: php -S 0.0.0.0:8080
+    command: php -S 0.0.0.0:8080 -t /app
 
   lua:
+    build: ./src/lua
     image: alpine
     ports:
       - 3002:3002
     restart: always
     environment:
       - LUA_PATH=/app/?.lua
-    command: sh -c "apk add lua5.4 && lua -e 'print(\"Hello ASL! \" .. os.date(\"%Y-%m-%d %H:%M:%S\"))'"
+    command: lua main.lua
 
-  java:
-    build: ./java
+  python:
+    build: ./src/python
+    image: python:latest
     ports:
-      - 8081:8081
+      - 8082:8082
     restart: always
     environment:
-      - CLASSPATH=/app
-    command: java -cp /app Main
+      - PYTHONPATH=/app
+    command: python app.py
 
 volumes:
   db-data:
