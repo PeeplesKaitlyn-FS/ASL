@@ -25,10 +25,10 @@ services:
   java:
     build:
       context: ./src/java
-      dockerfile: Dockerfile
     ports:
       - 8081:8081
     restart: always
+    command: java main.java
 
   python:
     build: ./src/python
