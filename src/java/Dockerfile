@@ -1,9 +1,9 @@
 FROM openjdk:latest
 
-WORKDIR /src/java
+WORKDIR /app
 
-COPY Main.java .
+COPY src/java/Main.java /app/
 
 RUN javac Main.java
 
-CMD ["java", "-cp", ".", "Main"]
+CMD ["java", "Main"]
