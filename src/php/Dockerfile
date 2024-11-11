@@ -2,6 +2,6 @@ FROM php:latest
 
 WORKDIR /src/php
 
-COPY index.php .
+COPY index.php /src/php/
 
-CMD ["php", "-S", "0.0.0.0:8080"]
+CMD ["php", "-f", "index.php"]
