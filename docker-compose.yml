@@ -5,7 +5,6 @@ services:
     ports:
       - 3001:3001
     restart: always
-    command: node /src/node/app.js
 
 
   php:
@@ -14,21 +13,19 @@ services:
     ports:
       - 8080:80
     restart: always
-    command: php index.php
 
   lua:
     build: .
     ports:
       - 3002:3002
     restart: always
+    command: lua main.lua
 
   java:
-    build:
-      context: ./src/java
+    build: .
     ports:
-      - 8081:8081
-    restart: always
-    command: java main.java
+      - "3000:3000"
+    command: java -cp /src/java Main
 
   python:
     build: ./src/python
@@ -36,4 +33,3 @@ services:
     ports:
       - 8082:8082
     restart: always
-    command: python app.py
