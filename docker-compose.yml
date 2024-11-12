@@ -22,10 +22,13 @@ services:
     command: lua main.lua
 
   java:
-    build: .
+    image: openjdk:8-jdk-alpine
+    volumes:
+      - ./java:/app/java
     ports:
-      - "3000:3000"
-    command: java -cp /src/java Main
+      - "3003:3000"
+    working_dir: /app/java
+    command: java -jar main.jar
 
   python:
     build: ./src/python
