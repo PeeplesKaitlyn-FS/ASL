@@ -35,4 +35,4 @@ services:
     image: python:latest
     ports:
       - 8082:8082
-    restart: always
+    restart: always 
