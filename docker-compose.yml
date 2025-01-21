@@ -13,23 +13,24 @@ services:
     ports:
       - 8080:80
     restart: always
+    command: php -S 0.0.0.0:80
 
   lua:
     build: .
     ports:
-      - 3002:3002
+      - "3002:3002"
     restart: always
-    command: lua main.lua
+    command: lua5.4 main.lua
 
   java:
     image: openjdk:8-jdk-alpine
     volumes:
-      - ./java:/app/java
+      - ./src/java:/app/java
     ports:
       - "3003:3000"
     working_dir: /app/java
-    command: java -jar main.jar
-
+    command: java Main
+    
   python:
     build: ./src/python
     image: python:latest
