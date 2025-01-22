@@ -1,7 +1,6 @@
 services:
   node:
     image: node:latest
-    build: ./src/node
     ports:
       - 3001:3001
     restart: always
@@ -9,18 +8,17 @@ services:
 
   php:
     image: php:latest
-    build: ./src/php
     ports:
       - 8080:80
     restart: always
     command: php -S 0.0.0.0:80
 
   lua:
-    build: .
+    build: ./lua
     ports:
       - "3002:3002"
     restart: always
-    command: lua5.4 main.lua
+    command: ["sh", "-c", "chmod +x /src/lua/main.lua && /src/lua/main.lua"]
 
   java:
     image: openjdk:8-jdk-alpine
@@ -29,10 +27,9 @@ services:
     ports:
       - "3003:3000"
     working_dir: /app/java
-    command: java Main
-    
+    command: java -cp . Main
+
   python:
-    build: ./src/python
     image: python:latest
     ports:
       - 8082:8082
