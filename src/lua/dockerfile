@@ -1,9 +1,10 @@
-FROM ubuntu:latest
+FROM alpine:latest
 
-RUN apt-get update && apt-get install -y lua5.4
+RUN apk add curl make gcc musl-dev
 
-WORKDIR /app
-
-COPY main.lua /app/
-
-CMD ["lua", "main.lua"]
+RUN curl -L -R -O https://www.lua.org/ftp/lua-5.4.7.tar.gz
+RUN tar zxf lua-5.4.7.tar.gz
+WORKDIR lua-5.4.7
+RUN make linux
+RUN make install
+CMD ["lua"]
