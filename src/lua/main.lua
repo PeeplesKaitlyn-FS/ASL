@@ -1,3 +1,5 @@
+#!/usr/bin/env lua
+
 local date = os.date("*t")
 
 print("Hello, world! The current date and time is:")
