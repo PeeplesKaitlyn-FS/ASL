@@ -7,4 +7,8 @@ RUN tar zxf lua-5.4.7.tar.gz
 WORKDIR lua-5.4.7
 RUN make linux
 RUN make install
-CMD ["lua"]
+
+WORKDIR /
+COPY main.lua /main.lua
+
+CMD ["lua", "/main.lua"]
