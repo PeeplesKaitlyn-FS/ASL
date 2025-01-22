@@ -18,7 +18,7 @@ services:
     ports:
       - "3002:3002"
     restart: always
-    command: ["sh", "-c", "chmod +x /src/lua/main.lua && /src/lua/main.lua"]
+    command: ["lua", "/main.lua"]
 
   java:
     image: openjdk:8-jdk-alpine
